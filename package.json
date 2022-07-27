@@ -1,23 +1,21 @@
 {
-  "name": "certificates",
-  "version": "1.0.0",
-  "description": "",
+  "name": "node-ssl-certificates",
+  "version": "0.2.0",
+  "description": "functions to fetch ssl certificates",
   "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": { 
     "test": "mocha --timeout 60000"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["ssl", "certificates", "chains", "altnames", "x509"],
+  "author": "jmarroyave-compsci",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jmarroyave-compsci/node-ssl-certificates/issues"
+  },
+  "homepage": "https://github.com/jmarroyave-compsci/node-ssl-certificates#readme",
   "devDependencies": {
     "chai": "^4.3.6",
     "chai-as-promised": "^7.1.1",
     "mocha": "^10.0.0"
-  },
-  "dependencies": {
-    "node-fetch": "^2.6.7"
   }
 }
