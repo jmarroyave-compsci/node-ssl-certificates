@@ -9,14 +9,15 @@
 ---
 
 ## Description
-node-ssl-certificates is a node.js library for fetching and parsing ssl-certificates, resulting from merging many others pre-existing and usefull packages
+node-ssl-certificates is a node.js library for fetching and parsing ssl-certificates, resulting from merging others packages like
 
 * [get-ssl-certificate](https://www.npmjs.com/package/get-ssl-certificate)  
 * [cert-info](https://www.npmjs.com/package/cert-info)  
 
 ## Features
   * zero third-party dependencies
-  * async support
+  * async/await support
+  * optional use of node's crypto module
 
 
 ## Installation
@@ -60,6 +61,7 @@ fetch the ssl-certificate from the host included in the url
 | --- | ---- | ---- | ---- |
 | includeChain | includes chain's certificates | boolean | false |
 | includeCertificates | includes the raw certificates string in the response object | boolean | false |
+| useCryptoModule | use node's crypto module or custom parser | boolean | true |
 | port | port to connect to | int | 443 |
 
 ### .getCertificateFromDomain(domain, options)
@@ -75,6 +77,7 @@ fetch the ssl-certificate from the domain name
 | --- | ---- | ---- | ---- |
 | includeChain | includes chain's certificates | boolean | false |
 | includeCertificates | includes the raw certificates string in the response object | boolean | false |
+| useCryptoModule | use node's crypto module or custom parser | boolean | true |
 | port | port to connect to | int | 443 |
 
 ### .getCertificateFromFile(path, options)
@@ -90,6 +93,7 @@ fetch the ssl-certificate from the domain name
 | --- | ---- | ---- | ---- |
 | includeChain | includes chain's certificates | boolean | false |
 | includeCertificates | includes the raw certificates string in the response object | boolean | false |
+| useCryptoModule | use node's crypto module or custom parser | boolean | true |
 
 ## License
 

@@ -1,4 +1,4 @@
 // author: jmarroyave
-'use strict';
+"use strict";
 
-module.exports = require('./lib/module.js');
+module.exports = require("./lib/module.js");

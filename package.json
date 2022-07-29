@@ -1,21 +1,81 @@
 {
   "name": "node-ssl-certificates",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "functions to fetch ssl certificates",
   "main": "index.js",
-  "scripts": { 
-    "test": "mocha --timeout 60000"
+  "scripts": {
+    "test": "mocha",
+    "lint": "eslint .  --ext .js",
+    "lint-fix": "eslint . --ext .js --fix"
   },
-  "keywords": ["ssl", "certificates", "chains", "altnames", "x509"],
-  "author": "jmarroyave-compsci",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "keywords": [
+    "ssl",
+    "certificates",
+    "chains",
+    "altnames",
+    "x509"
+  ],
+  "author": {
+    "email": "jmarroyave-compsci",
+    "name": "JMArroyave"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jmarroyave-compsci/node-ssl-certificates/issues"
   },
   "homepage": "https://github.com/jmarroyave-compsci/node-ssl-certificates#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmarroyave-compsci/node-ssl-certificates.git"
+  },
+  "engines": {
+    "node": ">=8.3"
+  },
   "devDependencies": {
     "chai": "^4.3.6",
     "chai-as-promised": "^7.1.1",
+    "eslint": "^8.20.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jest": "^26.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "mocha": "^10.0.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "commonjs": true,
+      "es2021": true,
+      "mocha": true
+    },
+    "extends": [
+      "google",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": "latest"
+    },
+    "rules": {
+      "max-len": ["error", { "code": 150 }],
+      "require-jsdoc" : 0,
+      "semi": [
+        "error",
+        "always"
+      ],
+      "quotes": [
+        "error",
+        "double"
+      ]
+    }
+  },
+  "mocha": {
+    "reporter": "spec",
+    "recursive": true,
+    "check-leaks": true,
+    "timeout": 60000
   }
 }
