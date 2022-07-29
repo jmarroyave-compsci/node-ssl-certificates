@@ -1,6 +1,6 @@
 {
   "name": "node-ssl-certificates",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "functions to fetch ssl certificates",
   "main": "index.js",
   "scripts": {
