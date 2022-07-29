@@ -5,7 +5,7 @@
 
 <hr/>
 
-[![npm](https://img.shields.io/badge/npm-v0.6.0-green.svg)](https://www.npmjs.com/package/node-ssl-certificates)
+[![npm](https://img.shields.io/badge/npm-v0.7.0-green.svg)](https://www.npmjs.com/package/node-ssl-certificates)
 ---
 
 ## Description
