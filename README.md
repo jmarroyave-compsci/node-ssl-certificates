@@ -5,19 +5,27 @@
 
 <hr/>
 
-[![npm](https://img.shields.io/badge/npm-v0.7.0-green.svg)](https://www.npmjs.com/package/node-ssl-certificates)
----
+[![npm version](https://img.shields.io/npm/v/node-ssl-certificates)]()
+[![npm downloads](https://img.shields.io/npm/dt/node-ssl-certificates)]()
+[![license](https://img.shields.io/npm/l/node-ssl-certificates)]()
+[![dependencies](https://img.shields.io/librariesio/github/jmarroyave-compsci/node-ssl-certificates)]()
+[![quality-all](https://img.shields.io/npms-io/quality-score/node-ssl-certificates?label=quality-all)]()
+[![quality](https://img.shields.io/npms-io/quality-score/node-ssl-certificates)]()
+[![popularity](https://img.shields.io/npms-io/popularity-score/node-ssl-certificates)]()
+ 
 
 ## Description
 node-ssl-certificates is a node.js library for fetching and parsing ssl-certificates, resulting from merging others packages like
 
 * [get-ssl-certificate](https://www.npmjs.com/package/get-ssl-certificate)  
 * [cert-info](https://www.npmjs.com/package/cert-info)  
+* [asn1js](https://www.npmjs.com/package/asn1js)  
 
 ## Features
   * zero third-party dependencies
   * async/await support
   * optional use of node's crypto module
+  * asn1 viewer
 
 
 ## Installation
@@ -80,13 +88,13 @@ fetch the ssl-certificate from the domain name
 | useCryptoModule | use node's crypto module or custom parser | boolean | true |
 | port | port to connect to | int | 443 |
 
-### .getCertificateFromFile(path, options)
+### .getCertificateFromFile(pemPath, options)
 
 fetch the ssl-certificate from the domain name
 
 #### args
 
-- path: string
+- pemPath: string
 - options: object
 
 | option| description | type | default |
@@ -94,6 +102,18 @@ fetch the ssl-certificate from the domain name
 | includeChain | includes chain's certificates | boolean | false |
 | includeCertificates | includes the raw certificates string in the response object | boolean | false |
 | useCryptoModule | use node's crypto module or custom parser | boolean | true |
+
+### .printRawCertificate(pem)
+
+print the asn1 tree structure
+
+#### args
+
+- pem: string
+
+#### return
+
+- string: with the asn tree structure 
 
 ## License
 

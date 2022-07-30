@@ -15,10 +15,8 @@ describe("basic functions", () => {
   describe("fetch a certificate from domain name", () => {
     it("should return the certificate's info", async () => {
       const certificates = require("../index");
-      const data = await certificates.getCertificateFromDomain(CONFIG.DOMAIN, {
-        includeChain: true,
-      });
-      expect(helper.getHash(data)).to.equal(CONFIG.CERT_HASH);
+      const data = await certificates.getCertificateFromDomain(CONFIG.DOMAIN);
+      expect(data?.subject?.CN).to.contain(CONFIG.DOMAIN);
     });
   });
 
@@ -27,9 +25,8 @@ describe("basic functions", () => {
       const certificates = require("../index");
       const data = await certificates.getCertificateFromURL(
           `https://${CONFIG.DOMAIN}/test/url`,
-          {includeChain: true},
       );
-      expect(helper.getHash(data)).to.equal(CONFIG.CERT_HASH);
+      expect(data?.subject?.CN).to.contain(CONFIG.DOMAIN);
     });
   });
 
@@ -38,7 +35,6 @@ describe("basic functions", () => {
       const certificates = require("../index");
       const data = await certificates.getCertificateFromFile(
           `${__dirname}/${CONFIG.PATHS.test_certificate}`,
-          {includeChain: true},
       );
       expect(helper.getHash(data)).to.equal(CONFIG.CERT_HASH);
     });

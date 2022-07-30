@@ -106,4 +106,6 @@ dist
 # etc...
 others
 docs
-test.js
+out.txt
+test_raw.txt
+test_cert.txt
