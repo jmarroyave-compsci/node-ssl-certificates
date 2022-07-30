@@ -14,6 +14,18 @@
 [![popularity](https://img.shields.io/npms-io/popularity-score/node-ssl-certificates)]()
  
 
+* [Description](#description)
+* [Features](#features)
+* [Installation](#installation)
+* [Usage](#usage)
+* [API Documentation](#api-documentation)
+  * [getCertificateFromURL](#getCertificateFromURL)
+  * [getCertificateFromDomain](#getCertificateFromDomain)
+  * [getCertificateFromFile](#getCertificateFromFile)
+  * [printRawCertificate](#printRawCertificate)
+* [License](#license)
+
+
 ## Description
 node-ssl-certificates is a node.js library for fetching and parsing ssl-certificates, resulting from merging others packages like
 
@@ -54,11 +66,17 @@ sslCertificates.getCertificateFromDomain('nodejs.org').then(function (certificat
 });
 ```
 
-## Methods
+## API Documentation
 
-### .getCertificateFromURL(url, options)
+### getCertificateFromURL
 
 fetch the ssl-certificate from the host included in the url
+
+```javascript
+const { getCertificateFromURL } = require('node-ssl-certificates');
+
+await getCertificateFromURL(cert, options);
+```
 
 #### args
 
@@ -72,9 +90,16 @@ fetch the ssl-certificate from the host included in the url
 | useCryptoModule | use node's crypto module or custom parser | boolean | true |
 | port | port to connect to | int | 443 |
 
-### .getCertificateFromDomain(domain, options)
+### getCertificateFromDomain
 
 fetch the ssl-certificate from the domain name
+
+```javascript
+const { getCertificateFromDomain } = require('node-ssl-certificates');
+
+await getCertificateFromDomain(domain, options);
+```
+
 
 #### args
 
@@ -88,9 +113,15 @@ fetch the ssl-certificate from the domain name
 | useCryptoModule | use node's crypto module or custom parser | boolean | true |
 | port | port to connect to | int | 443 |
 
-### .getCertificateFromFile(pemPath, options)
+### getCertificateFromFile
 
 fetch the ssl-certificate from the domain name
+
+```javascript
+const { getCertificateFromFile } = require('node-ssl-certificates');
+
+await getCertificateFromFile(pemPath, options);
+```
 
 #### args
 
@@ -103,9 +134,15 @@ fetch the ssl-certificate from the domain name
 | includeCertificates | includes the raw certificates string in the response object | boolean | false |
 | useCryptoModule | use node's crypto module or custom parser | boolean | true |
 
-### .printRawCertificate(pem)
+### printRawCertificate
 
 print the asn1 tree structure
+
+```javascript
+const { printRawCertificate } = require('node-ssl-certificates');
+
+await printRawCertificate(pem);
+```
 
 #### args
 
@@ -117,5 +154,4 @@ print the asn1 tree structure
 
 ## License
 
-MIT
-
+The module is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
