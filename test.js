@@ -3,12 +3,12 @@ const CONFIG = require("./test/config");
 const certificates = require("./index");
 
 async function main() {
-  //await certs();
-  //await parser();
-  await printRaw();
+  await validate();
+  //await get();
+  //await printRaw();
 }
 
-async function parser() {
+async function get() {
   const cert = await certificates.get(CONFIG.DOMAIN, {
     includeCertificates: false,
     useCryptoModule: false,
@@ -22,11 +22,13 @@ async function printRaw() {
   console.log(await certificates.print(CONFIG.DOMAIN));
 }
 
-async function certs() {
-  const cert = await certificates.validate(CONFIG.DOMAIN, {
+async function validate() {
+  const domain = "yahoo.com";//CONFIG.DOMAIN
+  const cert = await certificates.validate(domain, {
     includeCertificates: true,
     includeChain: true,
     useCryptoModule: true,
+    verbose: true,
   });
 
   console.log(cert);

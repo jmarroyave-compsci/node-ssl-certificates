@@ -22,7 +22,7 @@
   * [get](#get)
   * [validate](#validate)
   * [print](#print)
-* [Reference packages](#reference_packages)
+* [Reference packages](#reference-packages)
 * [License](#license)
 
 
@@ -86,7 +86,7 @@ await get(from, options);
 | useCryptoModule | use node's crypto module or custom parser | boolean | true |
 | port | port to connect to | int | 443 |
 
-### validateCertificate
+### validate
 
 validates a ssl-certificate from a host, url or local file
 
@@ -137,6 +137,7 @@ thanks
 * [get-ssl-certificate](https://www.npmjs.com/package/get-ssl-certificate)  
 * [cert-info](https://www.npmjs.com/package/cert-info)  
 * [asn1js](https://www.npmjs.com/package/asn1js)  
+* [ssl-validator](https://www.npmjs.com/package/ssl-validator)  
 
 
 ## License
