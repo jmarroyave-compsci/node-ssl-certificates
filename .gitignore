@@ -109,6 +109,7 @@ docs
 out.txt
 test_raw.txt
 test_cert.txt
+test.js
 
 # bulk testing
 test/test.bulk.spec.js
