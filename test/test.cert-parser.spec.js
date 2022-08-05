@@ -15,7 +15,7 @@ describe("cert-parser", () => {
   describe("fetch a certificate from file and parse it's info with own-parser", () => {
     it("should return the certificate's info", async () => {
       const certificates = require("../index");
-      const data = await certificates.getCertificateFromFile(
+      const data = await certificates.get(
           `${__dirname}/${CONFIG.PATHS.test_certificate}`
           , {
             useCryptoModule: false,
@@ -28,14 +28,14 @@ describe("cert-parser", () => {
   describe("compare properties from both parsers", () => {
     it("should compare properties from parsers and expect an specific result", async () => {
       const certificates = require("../index");
-      const data1 = await certificates.getCertificateFromFile(
+      const data1 = await certificates.get(
           `${__dirname}/${CONFIG.PATHS.test_certificate}`
           , {
             useCryptoModule: false,
           },
       );
 
-      const data2 = await certificates.getCertificateFromFile(
+      const data2 = await certificates.get(
           `${__dirname}/${CONFIG.PATHS.test_certificate}`
           , {
             useCryptoModule: true,

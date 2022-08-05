@@ -19,19 +19,15 @@
 * [Installation](#installation)
 * [Usage](#usage)
 * [API Documentation](#api-documentation)
-  * [getCertificateFromURL](#getCertificateFromURL)
-  * [getCertificateFromDomain](#getCertificateFromDomain)
-  * [getCertificateFromFile](#getCertificateFromFile)
-  * [printRawCertificate](#printRawCertificate)
+  * [get](#get)
+  * [validate](#validate)
+  * [print](#print)
+* [Reference packages](#reference_packages)
 * [License](#license)
 
 
 ## Description
-node-ssl-certificates is a node.js library for fetching and parsing ssl-certificates, resulting from merging others packages like
-
-* [get-ssl-certificate](https://www.npmjs.com/package/get-ssl-certificate)  
-* [cert-info](https://www.npmjs.com/package/cert-info)  
-* [asn1js](https://www.npmjs.com/package/asn1js)  
+node-ssl-certificates is a node.js library for common ssl-certificates tasks such as fetch, parse and validation. 
 
 ## Features
   * zero third-party dependencies
@@ -55,7 +51,7 @@ npm install --save node-ssl-certificates
  
 const sslCertificates = require('node-ssl-certificates')
  
-sslCertificates.getCertificateFromDomain('nodejs.org').then(function (certificate) {
+sslCertificates.get('nodejs.org').then(function (certificate) {
   console.log(certificate.issuer)
   // { 
   //   C: 'GB',
@@ -68,19 +64,19 @@ sslCertificates.getCertificateFromDomain('nodejs.org').then(function (certificat
 
 ## API Documentation
 
-### getCertificateFromURL
+### get
 
-fetch the ssl-certificate from the host included in the url
+fetch the ssl-certificate from a host, url or local file
 
 ```javascript
-const { getCertificateFromURL } = require('node-ssl-certificates');
+const { get } = require('node-ssl-certificates');
 
-await getCertificateFromURL(cert, options);
+await get(from, options);
 ```
 
 #### args
 
-- url: string [p.e.: https://www.nodejs.com]
+- from: string [ p.e.: https://www.nodejs.com, nodejs.com, /tmp/cert.pem ]
 - options: object
 
 | option| description | type | default |
@@ -90,67 +86,58 @@ await getCertificateFromURL(cert, options);
 | useCryptoModule | use node's crypto module or custom parser | boolean | true |
 | port | port to connect to | int | 443 |
 
-### getCertificateFromDomain
+### validateCertificate
 
-fetch the ssl-certificate from the domain name
+validates a ssl-certificate from a host, url or local file
 
 ```javascript
-const { getCertificateFromDomain } = require('node-ssl-certificates');
+const { validate } = require('node-ssl-certificates');
 
-await getCertificateFromDomain(domain, options);
+await validate(from, options);
 ```
-
 
 #### args
 
-- domain: string [p.e.: nodejs.com]
+- from: string [ p.e.: https://www.nodejs.com, nodejs.com, /tmp/cert.pem ]
 - options: object
 
 | option| description | type | default |
 | --- | ---- | ---- | ---- |
 | includeChain | includes chain's certificates | boolean | false |
-| includeCertificates | includes the raw certificates string in the response object | boolean | false |
 | useCryptoModule | use node's crypto module or custom parser | boolean | true |
 | port | port to connect to | int | 443 |
 
-### getCertificateFromFile
-
-fetch the ssl-certificate from the domain name
-
-```javascript
-const { getCertificateFromFile } = require('node-ssl-certificates');
-
-await getCertificateFromFile(pemPath, options);
-```
-
-#### args
-
-- pemPath: string
-- options: object
-
-| option| description | type | default |
-| --- | ---- | ---- | ---- |
-| includeChain | includes chain's certificates | boolean | false |
-| includeCertificates | includes the raw certificates string in the response object | boolean | false |
-| useCryptoModule | use node's crypto module or custom parser | boolean | true |
-
-### printRawCertificate
+### print
 
 print the asn1 tree structure
 
 ```javascript
-const { printRawCertificate } = require('node-ssl-certificates');
+const { print } = require('node-ssl-certificates');
 
-await printRawCertificate(pem);
+await printCertificate(from, options);
 ```
 
 #### args
 
-- pem: string
+- from: string [ p.e.: https://www.nodejs.com, nodejs.com, /tmp/cert.pem ]
+- options: object
+
+| option| description | type | default |
+| --- | ---- | ---- | ---- |
+| useCryptoModule | use node's crypto module or custom parser | boolean | true |
 
 #### return
 
 - string: with the asn tree structure 
+
+## Reference packages
+  
+thanks
+
+* [get-ssl-certificate](https://www.npmjs.com/package/get-ssl-certificate)  
+* [cert-info](https://www.npmjs.com/package/cert-info)  
+* [asn1js](https://www.npmjs.com/package/asn1js)  
+
 
 ## License
 
