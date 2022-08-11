@@ -13,9 +13,10 @@ chai.should();
 
 describe("print functions", () => {
   describe("print raw certificate", () => {
-    it("should return the certificate's info", async () => {
+    it("should print the certificate's info", async () => {
       const certificates = require("../index");
-      const data = await certificates.print(`${__dirname}/${CONFIG.PATHS.test_certificate}`);
+      const path = `${__dirname}/${CONFIG.PATHS.test_certificate}`
+      const data = await certificates.print(path , { verbose: CONFIG.VERBOSE });
       expect(helper.getHash(data)).to.equal(CONFIG.CERT_HASH4);
     });
   });

@@ -1,6 +1,6 @@
 <h1 align="center"> node-ssl-certificates </h1>
 <p align="center">
-  <b >a node.js library for fetching and parsing ssl-certificates</b>
+  <b >a node.js library for fetching, parsing and validating ssl-certificates</b>
 </p>
 
 <hr/>
@@ -21,6 +21,7 @@
 * [API Documentation](#api-documentation)
   * [get](#get)
   * [validate](#validate)
+  * [signedBy](#signedBy)
   * [print](#print)
 * [Reference packages](#reference-packages)
 * [License](#license)
@@ -76,7 +77,7 @@ await get(from, options);
 
 #### args
 
-- from: string [ p.e.: https://www.nodejs.com, nodejs.com, /tmp/cert.pem ]
+- from: string [ p.e.: https://url/cert.der, nodejs.com, /tmp/cert.pem ]
 - options: object
 
 | option| description | type | default |
@@ -85,10 +86,19 @@ await get(from, options);
 | includeCertificates | includes the raw certificates string in the response object | boolean | false |
 | useCryptoModule | use node's crypto module or custom parser | boolean | true |
 | port | port to connect to | int | 443 |
+| verbose | print verbose | boolean | false |
 
 ### validate
 
-validates a ssl-certificate from a host, url or local file
+tests the validity of a ssl-certificate, the aspects tested are
+
+* Is date valid?
+* Is the domain valid?
+* Is the chain of trust valid?
+* Is the root CA self signed?
+* Was the certificate revoked by it's issuer
+* Are the cryptographic details valid
+* Is the root CA valid?
 
 ```javascript
 const { validate } = require('node-ssl-certificates');
@@ -98,14 +108,39 @@ await validate(from, options);
 
 #### args
 
-- from: string [ p.e.: https://www.nodejs.com, nodejs.com, /tmp/cert.pem ]
+- from: string [ p.e.: https://url/cert.der, nodejs.com, /tmp/cert.pem ]
 - options: object
 
 | option| description | type | default |
 | --- | ---- | ---- | ---- |
+| domain | domain name to validate | string | null |
 | includeChain | includes chain's certificates | boolean | false |
 | useCryptoModule | use node's crypto module or custom parser | boolean | true |
 | port | port to connect to | int | 443 |
+| verbose | print verbose | boolean | false |
+
+
+### signedBy
+
+validates a ssl-certificate being signed by some other certificate
+
+```javascript
+const { signedBy } = require('node-ssl-certificates');
+
+await signedBy(from, signer, options);
+```
+
+#### args
+
+- from: string [ p.e.: https://url/cert.der, nodejs.com, /tmp/cert.pem ]
+- signer: string [ p.e.: https://url/cert.der, nodejs.com, /tmp/cert.pem ]
+- options: object
+
+| option| description | type | default |
+| --- | ---- | ---- | ---- |
+| useCryptoModule | use node's crypto module or custom parser | boolean | true |
+| verbose | print verbose | boolean | false |
+
 
 ### print
 
@@ -119,12 +154,13 @@ await printCertificate(from, options);
 
 #### args
 
-- from: string [ p.e.: https://www.nodejs.com, nodejs.com, /tmp/cert.pem ]
+- from: string [ p.e.: https://url/cert.der, nodejs.com, /tmp/cert.pem ]
 - options: object
 
 | option| description | type | default |
 | --- | ---- | ---- | ---- |
 | useCryptoModule | use node's crypto module or custom parser | boolean | true |
+| verbose | print verbose | boolean | false |
 
 #### return
 

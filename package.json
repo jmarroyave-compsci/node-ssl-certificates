@@ -1,7 +1,7 @@
 {
   "name": "node-ssl-certificates",
-  "version": "0.10.2",
-  "description": "functions to fetch ssl certificates",
+  "version": "0.11.0",
+  "description": "a node.js library for fetching, parsing and validating ssl-certificates",
   "main": "index.js",
   "scripts": {
     "test": "mocha",

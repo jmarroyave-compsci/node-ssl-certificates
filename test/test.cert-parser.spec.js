@@ -13,7 +13,7 @@ chai.should();
 
 describe("cert-parser", () => {
   describe("fetch a certificate from file and parse it's info with own-parser", () => {
-    it("should return the certificate's info", async () => {
+    it("leaf certificate", async () => {
       const certificates = require("../index");
       const data = await certificates.get(
           `${__dirname}/${CONFIG.PATHS.test_certificate}`
@@ -22,6 +22,16 @@ describe("cert-parser", () => {
           },
       );
       expect(helper.getHash(data)).to.equal(CONFIG.CERT_HASH2);
+    });
+    it("root certificate", async () => {
+      const certificates = require("../index");
+      const data = await certificates.get(
+          `${__dirname}/${CONFIG.PATHS.root_certificate}`
+          , {
+            useCryptoModule: false,
+          },
+      );
+      expect(helper.getHash(data)).to.equal("2f1fe810f9e0e55c936458a71b6b7fbd");
     });
   });
 

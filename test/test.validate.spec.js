@@ -20,9 +20,29 @@ describe("validation functions", () => {
       );
       expect(data).to.be.equal(false);
     });
+    it("invalid domain", async () => {
+      const certificates = require("../index");
+      const data = await certificates.validate(CONFIG.CERT.DOMAIN, { domain: `${CONFIG.CERT.DOMAIN.slice(1)}`, verbose: CONFIG.VERBOSE, includeChain: true });
+      expect(data).to.be.equal(false);
+    });
+    it("exact subject CN", async () => {
+      const certificates = require("../index");
+      const data = await certificates.validate(CONFIG.CERT.DOMAIN, { domain: `*.${CONFIG.CERT.DOMAIN}`, verbose: CONFIG.VERBOSE, includeChain: true });
+      expect(data).to.be.equal(true);
+    });
+    it("exact altname", async () => {
+      const certificates = require("../index");
+      const data = await certificates.validate(CONFIG.CERT.DOMAIN, { domain: `${CONFIG.CERT.DOMAIN}`, verbose: CONFIG.VERBOSE, includeChain: true });
+      expect(data).to.be.equal(true);
+    });
+    it("match * altname", async () => {
+      const certificates = require("../index");
+      const data = await certificates.validate(CONFIG.CERT.DOMAIN, { domain: `test.${CONFIG.CERT.DOMAIN}`, verbose: CONFIG.VERBOSE, includeChain: true });
+      expect(data).to.be.equal(true);
+    });
     it("should be valid", async () => {
       const certificates = require("../index");
-      const data = await certificates.validate(CONFIG.DOMAIN, { verbose: CONFIG.VERBOSE, includeChain: true });
+      const data = await certificates.validate(CONFIG.CERT.DOMAIN, { verbose: CONFIG.VERBOSE, includeChain: true });
       expect(data).to.be.equal(true);
     });
   });

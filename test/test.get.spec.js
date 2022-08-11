@@ -15,14 +15,14 @@ describe("get functions", () => {
   describe("fetch a certificate from domain name", () => {
     it("should return the certificate's info", async () => {
       const certificates = require("../index");
-      const data = await certificates.get(CONFIG.DOMAIN);
-      expect(data?.subject?.CN).to.contain(CONFIG.DOMAIN);
+      const data = await certificates.get(CONFIG.CERT.DOMAIN);
+      expect(data?.subject?.CN).to.contain(CONFIG.CERT.DOMAIN);
     });
   });
   describe("includeCertificate", () => {
     it("should return the certificate's info with it's raw string", async () => {
       const certificates = require("../index");
-      const data = await certificates.get(CONFIG.DOMAIN, {
+      const data = await certificates.get(CONFIG.CERT.DOMAIN, {
         includeCertificates: true,
       });
 
@@ -33,7 +33,7 @@ describe("get functions", () => {
   describe("fetch a certificate from domain name with it's complete chain of trust", () => {
     it("should return the certificate's info", async () => {
       const certificates = require("../index");
-      const data = await certificates.get(CONFIG.DOMAIN, {
+      const data = await certificates.get(CONFIG.CERT.DOMAIN, {
         includeChain: true,
       });
       expect(data.chain).to.be.an("array");
