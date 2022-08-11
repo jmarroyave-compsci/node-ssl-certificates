@@ -1,0 +1,37 @@
+/* eslint-env mocha */
+
+const chai = require("chai");
+const expect = chai.expect;
+const chaiAsPromised = require("chai-as-promised");
+const helper = require("./helper");
+
+// Load chai-as-promised support
+chai.use(chaiAsPromised);
+
+chai.should();
+
+describe("test bulk", () => {
+  describe("test a bulk certificate's folder", () => {
+    it("should be valid", async () => {
+      const certsPath = `/media/data/projects/security/modules/network-analysis/sources/certificates/data/certs`
+      const certificates = require("../index");
+      const fs = require("/labs/_/node/files")
+      const pems = fs.getAllFiles(certsPath, { justFiles: true })
+      var i = 1
+      for(const pem of pems ){
+        console.log("-".repeat(80))
+        console.log(i, pem.split("/").slice(-1)[0])
+        if(!await certificates.validate(pem, { verbose: true, includeChain: true })) {
+          console.log("FAILED")
+          if(fs.getSize(pem) === 86){
+            fs.delete(pem)
+          } else {
+            fs.moveTo(pem, `${certsPath}/failed`)  
+          }
+          
+        }
+        i++
+      }
+    });
+  });
+});
